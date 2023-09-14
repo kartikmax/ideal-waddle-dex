@@ -1,0 +1,31 @@
+<h2 class="content-block">{{ value }}</h2>
+<dx-data-grid
+  [width]="'100%'"
+  id="id"
+  [dataSource]="listData"
+  [rowAlternationEnabled]="true"
+>
+  <dxo-state-storing
+    [enabled]="true"
+    type="localStorage"
+    storageKey="gridState"
+  ></dxo-state-storing>
+  <dxo-paging [pageSize]="gridConfigs.pageSize"></dxo-paging>
+  <dxo-editing
+    [allowUpdating]="gridConfigs.enableEditing"
+    [useIcons]="true"
+    mode="row"
+  ></dxo-editing>
+
+  <dxo-pager
+    [showPageSizeSelector]="true"
+    [allowedPageSizes]="gridConfigs.page"
+  ></dxo-pager>
+  <dxo-search-panel
+    [visible]="gridConfigs.enableSearchPanel"
+    [highlightCaseSensitive]="true"
+  ></dxo-search-panel>
+  <div *ngFor="let item of getColumns; let i; of: updatedColumns">
+    <dxi-column [dataField]="item" [caption]="i"></dxi-column>
+  </div>
+</dx-data-grid>
