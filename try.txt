@@ -1,0 +1,71 @@
+// Remove @Input() columns and @Input() filterValue
+@Input() gridConfigs: ITDataGridSystem = {
+  enableEditing: true,
+  enableSearchPanel: true,
+  page: [5, 10],
+  pageSize: 5,
+};
+//reusable list ts
+-----------------------------------
+export class Page1Component implements OnInit {
+  // ...
+  columns: string[] = ['id', 'city', 'name', 'department', 'email'];
+  // ...
+  ngOnInit(): void {
+    // ...
+    this.filterValue = [
+      ['department', '=', 'Finance'],
+      'or',
+      ['city', '=', 'Chennai'],
+    ];
+  }
+}
+//page 1 component ts
+----------------------------
+
+export class Page2Component implements OnInit {
+  // ...
+  columns: string[] = ['username', 'city', 'credit_card_company', 'phone'];
+  // ...
+  ngOnInit(): void {
+    // ...
+    this.filterValue = [
+      ['credit_card_company', '=', 'VISA'],
+      'or',
+      // ['city', '=', 'Chennai'],
+    ];
+  }
+}
+//page 2 ts
+----------------------------------
+<app-reusable-list
+  [filterValue]="filterValue"
+  [getColumns]="columns"
+  [gridConfigs]="gridConfigs"
+  [groupIndexColumnName]="groupIndexColumnName"
+  [listData]="listData"
+  value="Page 1 Grid"
+  [customisationOfGrid]="customisationOfGrid"
+/>
+page 1 html
+------------------------
+<app-reusable-list
+  [filterValue]="filterValue"
+  [getColumns]="columns"
+  [gridConfigs]="gridConfigs"
+  [groupIndexColumnName]="groupIndexColumnName"
+  [listData]="listData"
+  value="Page 1 Grid"
+  [customisationOfGrid]="customisationOfGrid"
+/>
+page 2 html 
+---------------------------------
+
+
+
+
+
+
+
+
+
